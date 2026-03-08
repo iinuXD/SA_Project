@@ -2,8 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
-from app.database import engine
-from app.models import Base
+from app.database import engine, Base
 from app.config import settings
 from app.controllers.auth_controller import router as auth_router
 from app.controllers.map_controller import router as map_router

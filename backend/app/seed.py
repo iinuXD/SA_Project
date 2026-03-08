@@ -5,7 +5,7 @@ Run: python -m app.seed
 import uuid
 from app.database import SessionLocal, engine
 from app.models import User, SystemSetting, Building, Room, NotificationSetting
-from app.models import Base
+from app.database import Base
 from app.config import settings
 
 
