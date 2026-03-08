@@ -1,0 +1,55 @@
+# render.yaml — Deploy to Render.com (Free tier)
+# Docs: https://render.com/docs/render-yaml-reference
+
+services:
+  # ── Backend (FastAPI) ────────────────────────────────────────────────────────
+  - type: web
+    name: wimc-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    rootDir: backend
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: wimc-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: GOOGLE_CLIENT_ID
+        sync: false       # Set manually in Render dashboard
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_MAPS_API_KEY
+        sync: false
+      - key: ADMIN_SEED_EMAIL
+        sync: false       # Set to your admin KKU email
+      - key: FRONTEND_URL
+        sync: false       # Set to your frontend Render URL
+    healthCheckPath: /health
+
+  # ── Frontend (React/Vite static site) ────────────────────────────────────────
+  - type: web
+    name: wimc-frontend
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    rootDir: frontend
+    envVars:
+      - key: VITE_GOOGLE_CLIENT_ID
+        sync: false
+      - key: VITE_GOOGLE_MAPS_API_KEY
+        sync: false
+      - key: VITE_API_URL
+        sync: false       # Set to https://wimc-backend.onrender.com/api
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+# ── PostgreSQL Database ───────────────────────────────────────────────────────
+databases:
+  - name: wimc-db
+    databaseName: wimc
+    user: wimc_user
+    plan: free

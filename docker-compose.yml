@@ -1,0 +1,53 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: wimc
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://postgres:password@db:5432/wimc
+      SECRET_KEY: local-dev-secret-key
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
+      ADMIN_SEED_EMAIL: ${ADMIN_SEED_EMAIL:-admin@kku.ac.th}
+      FRONTEND_URL: http://localhost:5173
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      VITE_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      VITE_GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
+      VITE_API_URL: http://backend:8000/api
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

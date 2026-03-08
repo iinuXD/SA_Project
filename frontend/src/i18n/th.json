@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "หน้าหลัก",
+    "schedule": "ตารางเรียน",
+    "faculties": "คณะ/อาคาร",
+    "admin": "จัดการระบบ",
+    "logout": "ออกจากระบบ"
+  },
+  "auth": {
+    "loginTitle": "Where is My Classroom",
+    "loginSubtitle": "ระบบค้นหาห้องเรียน มหาวิทยาลัยขอนแก่น",
+    "loginBtn": "เข้าสู่ระบบด้วย KKU Mail",
+    "loginNote": "รองรับเฉพาะ @kkumail.com และ @kku.ac.th เท่านั้น",
+    "loginError": "กรุณาใช้อีเมล KKU เท่านั้น"
+  },
+  "home": {
+    "searchPlaceholder": "ค้นหาอาคารหรือห้องเรียน...",
+    "recentSearch": "ค้นหาล่าสุด",
+    "buildings": "อาคารทั้งหมด",
+    "noResults": "ไม่พบผลลัพธ์สำหรับ",
+    "weather": "สภาพอากาศ มข."
+  },
+  "schedule": {
+    "title": "ตารางเรียน",
+    "edit": "แก้ไข",
+    "importIcs": "นำเข้าตารางเรียน (.ics)",
+    "importBtn": "เลือกไฟล์ .ics",
+    "noSchedule": "ยังไม่มีตารางเรียน กรุณานำเข้าไฟล์ .ics จาก KKU Reg",
+    "today": "วันนี้",
+    "todayClasses": "วิชาที่ต้องเรียนวันนี้",
+    "noTodayClasses": "ไม่มีคลาสเรียนวันนี้",
+    "days": {
+      "MO": "จ",
+      "TU": "อ",
+      "WE": "พ",
+      "TH": "พฤ",
+      "FR": "ศ",
+      "SA": "ส",
+      "SU": "อา"
+    },
+    "daysLong": {
+      "MO": "วันจันทร์",
+      "TU": "วันอังคาร",
+      "WE": "วันพุธ",
+      "TH": "วันพฤหัสบดี",
+      "FR": "วันศุกร์",
+      "SA": "วันเสาร์",
+      "SU": "วันอาทิตย์"
+    },
+    "semester": "ภาคเรียน",
+    "academicYear": "ปีการศึกษา",
+    "notification": "การแจ้งเตือน",
+    "alertEnabled": "เปิดการแจ้งเตือน",
+    "minutesBefore": "แจ้งเตือนก่อน (นาที)",
+    "editSession": "แก้ไขข้อมูลวิชา",
+    "roomOverride": "ห้องที่ย้าย/Make-up",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก"
+  },
+  "building": {
+    "rooms": "ห้องเรียนทั้งหมด",
+    "noRooms": "ไม่มีข้อมูลห้องเรียน",
+    "location": "ตำแหน่งบนแผนที่",
+    "viewOnMap": "ดูบนแผนที่ Google"
+  },
+  "admin": {
+    "title": "จัดการข้อมูล",
+    "buildings": "จัดการอาคาร",
+    "rooms": "จัดการห้องเรียน",
+    "images": "จัดการรูปภาพ",
+    "add": "เพิ่ม",
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "confirm_delete": "ยืนยันการลบ?",
+    "buildName": "ชื่ออาคาร",
+    "buildDesc": "คำอธิบายอาคาร",
+    "buildLocation": "Google Place ID",
+    "roomName": "หมายเลขห้อง",
+    "roomDesc": "คำอธิบายห้อง",
+    "selectBuilding": "เลือกอาคาร",
+    "imageUrl": "URL รูปภาพ",
+    "imageDesc": "คำอธิบายรูป",
+    "saveSuccess": "บันทึกสำเร็จ",
+    "deleteSuccess": "ลบสำเร็จ"
+  },
+  "common": {
+    "loading": "กำลังโหลด...",
+    "error": "เกิดข้อผิดพลาด",
+    "retry": "ลองใหม่",
+    "close": "ปิด",
+    "search": "ค้นหา",
+    "room": "ห้อง",
+    "building": "อาคาร"
+  }
+}

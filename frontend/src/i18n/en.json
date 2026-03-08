@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "Home",
+    "schedule": "My Schedule",
+    "faculties": "Buildings",
+    "admin": "Admin",
+    "logout": "Logout"
+  },
+  "auth": {
+    "loginTitle": "Where is My Classroom",
+    "loginSubtitle": "KKU Campus Classroom Finder — Khon Kaen University",
+    "loginBtn": "Sign in with KKU Mail",
+    "loginNote": "Only @kkumail.com and @kku.ac.th accounts are supported",
+    "loginError": "Please use your KKU email only"
+  },
+  "home": {
+    "searchPlaceholder": "Search buildings or classrooms...",
+    "recentSearch": "Recent Searches",
+    "buildings": "All Buildings",
+    "noResults": "No results for",
+    "weather": "KKU Weather"
+  },
+  "schedule": {
+    "title": "My Schedule",
+    "edit": "Edit",
+    "importIcs": "Import Schedule (.ics)",
+    "importBtn": "Choose .ics file",
+    "noSchedule": "No schedule found. Please import a .ics file from KKU Reg",
+    "today": "Today",
+    "todayClasses": "Today's Classes",
+    "noTodayClasses": "No classes today",
+    "days": {
+      "MO": "Mon",
+      "TU": "Tue",
+      "WE": "Wed",
+      "TH": "Thu",
+      "FR": "Fri",
+      "SA": "Sat",
+      "SU": "Sun"
+    },
+    "daysLong": {
+      "MO": "Monday",
+      "TU": "Tuesday",
+      "WE": "Wednesday",
+      "TH": "Thursday",
+      "FR": "Friday",
+      "SA": "Saturday",
+      "SU": "Sunday"
+    },
+    "semester": "Semester",
+    "academicYear": "Academic Year",
+    "notification": "Notifications",
+    "alertEnabled": "Enable Alerts",
+    "minutesBefore": "Minutes Before Alert",
+    "editSession": "Edit Class Info",
+    "roomOverride": "New Room / Make-up",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "building": {
+    "rooms": "All Rooms",
+    "noRooms": "No room data available",
+    "location": "Map Location",
+    "viewOnMap": "View on Google Maps"
+  },
+  "admin": {
+    "title": "Data Management",
+    "buildings": "Manage Buildings",
+    "rooms": "Manage Rooms",
+    "images": "Manage Images",
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm_delete": "Confirm delete?",
+    "buildName": "Building Name",
+    "buildDesc": "Building Description",
+    "buildLocation": "Google Place ID",
+    "roomName": "Room Number",
+    "roomDesc": "Room Description",
+    "selectBuilding": "Select Building",
+    "imageUrl": "Image URL",
+    "imageDesc": "Image Description",
+    "saveSuccess": "Saved successfully",
+    "deleteSuccess": "Deleted successfully"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "close": "Close",
+    "search": "Search",
+    "room": "Room",
+    "building": "Building"
+  }
+}
