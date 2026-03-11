@@ -30,7 +30,11 @@ def seed():
             db.add(NotificationSetting(settingId=str(uuid.uuid4()), userId=admin.userId))
             print(f"✅ Admin created: {settings.ADMIN_SEED_EMAIL}")
         else:
-            print(f"ℹ️  Admin already exists: {settings.ADMIN_SEED_EMAIL}")
+            if admin.role != "admin":
+                admin.role = "admin"
+                print(f"✅ Admin role updated: {settings.ADMIN_SEED_EMAIL}")
+            else:
+                print(f"ℹ️  Admin already exists: {settings.ADMIN_SEED_EMAIL}")
 
         # ── Buildings ──────────────────────────────────────────────────────────
         buildings_data = [
