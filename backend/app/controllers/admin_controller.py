@@ -1,6 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
+import httpx
+import re
 
 from app.database import get_db
 from app.schemas import (
@@ -14,6 +16,24 @@ from app.models import User
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
+GOOGLE_MAPS_SHORT_DOMAINS = ("maps.app.goo.gl", "goo.gl")
+
+
+def resolve_short_maps_url(url: str) -> str:
+    """Follow redirects on shortened Google Maps URLs to get the full URL."""
+    if not url:
+        return url
+    try:
+        from urllib.parse import urlparse
+        parsed = urlparse(url)
+        if parsed.hostname not in GOOGLE_MAPS_SHORT_DOMAINS:
+            return url
+        with httpx.Client(follow_redirects=True, timeout=10) as client:
+            resp = client.head(url)
+            return str(resp.url)
+    except Exception:
+        return url
+
 
 # ── Buildings ─────────────────────────────────────────────────────────────────
 @router.post("/buildings", response_model=BuildingOut)
@@ -22,7 +42,10 @@ def create_building(
     db: Session = Depends(get_db),
     _: User = Depends(get_admin_user),
 ):
-    b = building_repo.create(db, body.model_dump())
+    data = body.model_dump()
+    if data.get("buildLocation"):
+        data["buildLocation"] = resolve_short_maps_url(data["buildLocation"])
+    b = building_repo.create(db, data)
     return BuildingOut.model_validate(b)
 
 
@@ -33,7 +56,10 @@ def update_building(
     db: Session = Depends(get_db),
     _: User = Depends(get_admin_user),
 ):
-    b = building_repo.update(db, build_id, body.model_dump(exclude_none=True))
+    data = body.model_dump(exclude_none=True)
+    if data.get("buildLocation"):
+        data["buildLocation"] = resolve_short_maps_url(data["buildLocation"])
+    b = building_repo.update(db, build_id, data)
     if not b:
         raise HTTPException(status_code=404, detail="Building not found")
     return BuildingOut.model_validate(b)

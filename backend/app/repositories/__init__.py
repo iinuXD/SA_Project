@@ -58,7 +58,7 @@ class BuildingRepo:
         ).all()
 
     def create(self, db: Session, data: dict) -> Building:
-        b = Building(buildId=str(uuid.uuid4()), **data)
+        b = Building(**data)
         db.add(b)
         db.commit()
         db.refresh(b)

@@ -41,11 +41,11 @@ class SystemSettingUpdate(BaseModel):
 class BuildingBase(BaseModel):
     buildName: str
     buildDesc: Optional[str] = None
-    buildLocation: Optional[str] = None  # Google Place ID
+    buildLocation: Optional[str] = None  # Google Maps URL
 
 
 class BuildingCreate(BuildingBase):
-    pass
+    buildId: str
 
 
 class BuildingUpdate(BuildingBase):
@@ -59,7 +59,7 @@ class BuildingOut(BuildingBase):
 
 
 class BuildingDetail(BuildingOut):
-    rooms: List["RoomOut"] = []
+    rooms: List["RoomDetail"] = []
     images: List["ImageOut"] = []
 
 

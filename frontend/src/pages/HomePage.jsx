@@ -6,9 +6,9 @@ import { getBuildings, searchBuildingsRooms, getSearchHistory } from '../api'
 import BuildingCard from '../components/BuildingCard'
 import WeatherWidget from '../components/WeatherWidget'
 import { useAuth } from '../context/AuthContext'
+import { parseCoordsFromUrl, KKU_CENTER } from '../utils/parseMapUrl'
 
 const VITE_GMAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY'
-const KKU_CENTER = { lat: 16.4748, lng: 102.8196 }
 
 export default function HomePage() {
   const { t } = useTranslation()
@@ -142,7 +142,7 @@ export default function HomePage() {
               {buildings.map((b) => (
                 <AdvancedMarker
                   key={b.buildId}
-                  position={KKU_CENTER}
+                  position={parseCoordsFromUrl(b.buildLocation)}
                   title={b.buildName}
                   onClick={() => navigate(`/buildings/${b.buildId}`)}
                 >

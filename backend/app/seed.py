@@ -39,40 +39,46 @@ def seed():
         # ── Buildings ──────────────────────────────────────────────────────────
         buildings_data = [
             {
-                "buildId": "SC",
-                "buildName": "SC อาคารวิทยาศาสตร์",
-                "buildDesc": "อาคารเรียนรวม คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น มีห้องเรียนและห้องปฏิบัติการวิทยาศาสตร์",
-                "buildLocation": "ChIJ_PLACE_ID_SC_KKU",  # Replace with actual Google Place ID
-                "rooms": [
-                    {"roomName": "SC01-101", "roomDesc": "ห้องเรียนชั้น 1 อาคาร SC01 จุคนได้ 80 คน"},
-                    {"roomName": "SC01-102", "roomDesc": "ห้องเรียนชั้น 1 อาคาร SC01 จุคนได้ 80 คน"},
-                    {"roomName": "SC03-305", "roomDesc": "ห้องเรียนชั้น 3 อาคาร SC03 จุคนได้ 50 คน"},
-                    {"roomName": "SC08-503", "roomDesc": "ห้องบรรยายชั้น 5 อาคาร SC08 จุคนได้ 120 คน"},
-                    {"roomName": "SC08-504", "roomDesc": "ห้องปฏิบัติการชั้น 5 อาคาร SC08"},
-                ],
+                "buildId": "SC09",
+                "buildName": "SC09 อาคารวิทยวิภาส",
+                "buildDesc": "อาคารวิทยวิภาส คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น",
+                "buildLocation": "https://maps.app.goo.gl/i1qjR31d32SXEbUJ8",
+                "rooms": [],
             },
             {
-                "buildId": "EN",
-                "buildName": "EN อาคารวิศวกรรมศาสตร์",
-                "buildDesc": "อาคารเรียนรวม คณะวิศวกรรมศาสตร์ มหาวิทยาลัยขอนแก่น",
-                "buildLocation": "ChIJ_PLACE_ID_EN_KKU",  # Replace with actual Google Place ID
-                "rooms": [
-                    {"roomName": "EN01-101", "roomDesc": "ห้องเรียนชั้น 1 อาคาร EN01 จุคนได้ 60 คน"},
-                    {"roomName": "EN01-102", "roomDesc": "ห้องปฏิบัติการคอมพิวเตอร์ชั้น 1"},
-                    {"roomName": "EN02-201", "roomDesc": "ห้องเรียนชั้น 2 อาคาร EN02 จุคนได้ 100 คน"},
-                    {"roomName": "EN03-301", "roomDesc": "ห้องสัมมนาชั้น 3 อาคาร EN03"},
-                ],
+                "buildId": "SC03",
+                "buildName": "SC03 ภาควิชาชีววิทยา",
+                "buildDesc": "ภาควิชาชีววิทยา คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น",
+                "buildLocation": "https://maps.app.goo.gl/uyNU6sebtb7iQY8o9",
+                "rooms": [],
             },
             {
-                "buildId": "KBS",
-                "buildName": "KBS อาคารวิทยาการจัดการ",
-                "buildDesc": "อาคารเรียนรวม คณะวิทยาการจัดการ มหาวิทยาลัยขอนแก่น",
-                "buildLocation": "ChIJ_PLACE_ID_KBS_KKU",  # Replace with actual Google Place ID
-                "rooms": [
-                    {"roomName": "KBS01-201", "roomDesc": "ห้องเรียนชั้น 2 จุคนได้ 80 คน"},
-                    {"roomName": "KBS02-301", "roomDesc": "ห้องเรียนชั้น 3 จุคนได้ 60 คน"},
-                    {"roomName": "KBS03-401", "roomDesc": "ห้องบรรยายใหญ่ชั้น 4 จุคนได้ 200 คน"},
-                ],
+                "buildId": "SC06",
+                "buildName": "SC06 ตึกหลอด",
+                "buildDesc": "อาคารวิทยาศาสตร์ คณะวิทยาศาสตร์ มหาวิทยาลัยขอนแก่น",
+                "buildLocation": "https://maps.app.goo.gl/XmmEsvrJQP5dFTJy9",
+                "rooms": [],
+            },
+            {
+                "buildId": "AG07",
+                "buildName": "AG07 อาคาร",
+                "buildDesc": "อาคาร AG07 คณะเกษตรศาสตร์ มหาวิทยาลัยขอนแก่น",
+                "buildLocation": "https://maps.app.goo.gl/GrnnPB85UQYSyrpi9",
+                "rooms": [],
+            },
+            {
+                "buildId": "AG05",
+                "buildName": "AG05 อาคาร",
+                "buildDesc": "อาคาร AG05 คณะเกษตรศาสตร์ มหาวิทยาลัยขอนแก่น",
+                "buildLocation": "https://maps.app.goo.gl/CG2XmWs5ATGYrbFW9",
+                "rooms": [],
+            },
+            {
+                "buildId": "AG03",
+                "buildName": "AG03 อาคาร",
+                "buildDesc": "อาคาร AG03 คณะเกษตรศาสตร์ มหาวิทยาลัยขอนแก่น",
+                "buildLocation": "https://maps.app.goo.gl/gs6fFr1uiaGRJ5uh9",
+                "rooms": [],
             },
         ]
 

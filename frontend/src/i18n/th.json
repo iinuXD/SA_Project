@@ -59,6 +59,7 @@
   },
   "building": {
     "rooms": "ห้องเรียนทั้งหมด",
+    "searchRooms": "ค้นหาห้องเรียน...",
     "noRooms": "ไม่มีข้อมูลห้องเรียน",
     "location": "ตำแหน่งบนแผนที่",
     "viewOnMap": "ดูบนแผนที่ Google"
@@ -81,7 +82,8 @@
     "imageUrl": "URL รูปภาพ",
     "imageDesc": "คำอธิบายรูป",
     "saveSuccess": "บันทึกสำเร็จ",
-    "deleteSuccess": "ลบสำเร็จ"
+    "deleteSuccess": "ลบสำเร็จ",
+    "action":"จัดการ"
   },
   "common": {
     "loading": "กำลังโหลด...",

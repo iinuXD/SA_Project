@@ -11,9 +11,9 @@ from app.models import User
 router = APIRouter(prefix="/map", tags=["map"])
 
 
-@router.get("/buildings", response_model=List[BuildingOut])
+@router.get("/buildings", response_model=List[BuildingDetail])
 def list_buildings(db: Session = Depends(get_db)):
-    return [BuildingOut.model_validate(b) for b in building_repo.get_all(db)]
+    return [BuildingDetail.model_validate(b) for b in building_repo.get_all(db)]
 
 
 @router.get("/buildings/{build_id}", response_model=BuildingDetail)

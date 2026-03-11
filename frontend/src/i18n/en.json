@@ -59,6 +59,7 @@
   },
   "building": {
     "rooms": "All Rooms",
+    "searchRooms": "Search rooms...",
     "noRooms": "No room data available",
     "location": "Map Location",
     "viewOnMap": "View on Google Maps"
@@ -81,7 +82,8 @@
     "imageUrl": "Image URL",
     "imageDesc": "Image Description",
     "saveSuccess": "Saved successfully",
-    "deleteSuccess": "Deleted successfully"
+    "deleteSuccess": "Deleted successfully",
+    "action":"Actions"
   },
   "common": {
     "loading": "Loading...",

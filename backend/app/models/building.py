@@ -10,7 +10,7 @@ class Building(Base):
     buildId = Column(String, primary_key=True, index=True)
     buildName = Column(String, nullable=False, index=True)
     buildDesc = Column(Text, nullable=True)
-    buildLocation = Column(String, nullable=True)  # Google Place ID
+    buildLocation = Column(String, nullable=True)  # Google Maps URL
 
     rooms = relationship("Room", back_populates="building", cascade="all, delete-orphan")
     images = relationship("Image", back_populates="building", cascade="all, delete-orphan")
