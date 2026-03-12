@@ -5,10 +5,10 @@
 ## Tech Stack
 - **Backend**: FastAPI (Python) + PostgreSQL + SQLAlchemy
 - **Frontend**: React 18 + Vite + Tailwind CSS
-- **Auth**: Google OAuth2 (KKU Mail only)
+- **Auth**: Google OAuth2
 - **Maps**: Google Maps JavaScript API
-- **Weather**: Open-Meteo API (Khon Kaen — ฟรี ไม่ต้อง key)
-- **Deploy**: Render.com (free tier)
+- **Weather**: Open-Meteo API
+- **Deploy**: Render
 
 ---
 
