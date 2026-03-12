@@ -90,6 +90,12 @@ export const adminUpdateRoom = (id, data) =>
 export const adminDeleteRoom = (id) =>
   api.delete(`/admin/rooms/${id}`).then((r) => r.data)
 
+export const adminUploadImage = (file) => {
+  const form = new FormData()
+  form.append('file', file)
+  return api.post('/admin/upload', form).then((r) => r.data)
+}
+
 export const adminCreateImage = (data) =>
   api.post('/admin/images', data).then((r) => r.data)
 

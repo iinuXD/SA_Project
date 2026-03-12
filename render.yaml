@@ -25,6 +25,12 @@ services:
         sync: false       # Set to your admin KKU email
       - key: FRONTEND_URL
         sync: false       # Set to your frontend Render URL
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
     healthCheckPath: /health
 
   # ── Frontend (React/Vite + nginx) ────────────────────────────────────────────

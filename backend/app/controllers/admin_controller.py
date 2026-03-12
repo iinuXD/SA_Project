@@ -1,10 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlalchemy.orm import Session
 from typing import List
 import httpx
 import re
+import cloudinary
+import cloudinary.uploader
 
 from app.database import get_db
+from app.config import settings
 from app.schemas import (
     BuildingCreate, BuildingUpdate, BuildingOut, BuildingDetail,
     RoomCreate, RoomUpdate, RoomOut,
@@ -13,6 +16,13 @@ from app.schemas import (
 from app.repositories import building_repo, room_repo, image_repo
 from app.dependencies import get_admin_user
 from app.models import User
+
+cloudinary.config(
+    cloud_name=settings.CLOUDINARY_CLOUD_NAME,
+    api_key=settings.CLOUDINARY_API_KEY,
+    api_secret=settings.CLOUDINARY_API_SECRET,
+    secure=True,
+)
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
@@ -109,6 +119,23 @@ def delete_room(
     if not room_repo.delete(db, room_id):
         raise HTTPException(status_code=404, detail="Room not found")
     return {"message": "Deleted successfully"}
+
+
+# ── Upload ────────────────────────────────────────────────────────────────────
+@router.post("/upload")
+def upload_image(
+    file: UploadFile = File(...),
+    _: User = Depends(get_admin_user),
+):
+    allowed_types = {"image/jpeg", "image/png", "image/webp", "image/gif"}
+    if file.content_type not in allowed_types:
+        raise HTTPException(status_code=400, detail="Only JPEG, PNG, WebP, and GIF images are allowed")
+    result = cloudinary.uploader.upload(
+        file.file,
+        folder="wimc",
+        resource_type="image",
+    )
+    return {"url": result["secure_url"]}
 
 
 # ── Images ────────────────────────────────────────────────────────────────────

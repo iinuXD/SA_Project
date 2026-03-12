@@ -6,7 +6,7 @@ import {
   getBuildings,
   adminCreateBuilding, adminUpdateBuilding, adminDeleteBuilding,
   adminCreateRoom, adminUpdateRoom, adminDeleteRoom,
-  adminCreateImage, adminDeleteImage,
+  adminCreateImage, adminDeleteImage, adminUploadImage,
 } from '../api'
 import { useAuth } from '../context/AuthContext'
 
@@ -37,7 +37,8 @@ export default function AdminPage() {
   const [editingBuilding, setEditingBuilding] = useState(null)
   const [roomForm, setRoomForm] = useState({ roomName: '', roomDesc: '', buildId: '' })
   const [editingRoom, setEditingRoom] = useState(null)
-  const [imageForm, setImageForm] = useState({ imageUrl: '', imageDesc: '', buildId: '', roomId: '' })
+  const [imageForm, setImageForm] = useState({ imageUrl: '', imageDesc: '', buildId: '', roomId: '', file: null })
+  const [uploading, setUploading] = useState(false)
   const [expandedBuildings, setExpandedBuildings] = useState({})
 
   const toggleBuildingExpand = (buildId) =>
@@ -107,15 +108,28 @@ export default function AdminPage() {
   // Image CRUD
   const handleSaveImage = async () => {
     try {
+      let imageUrl = imageForm.imageUrl
+      if (imageForm.file) {
+        setUploading(true)
+        const { url } = await adminUploadImage(imageForm.file)
+        imageUrl = url
+        setUploading(false)
+      }
+      if (!imageUrl) {
+        toast.error('กรุณาเลือกรูปภาพ')
+        return
+      }
       await adminCreateImage({
-        ...imageForm,
+        imageUrl,
+        imageDesc: imageForm.imageDesc || null,
         buildId: imageForm.buildId || null,
         roomId: imageForm.roomId || null,
       })
       toast.success(t('admin.saveSuccess'))
-      setImageForm({ imageUrl: '', imageDesc: '', buildId: '', roomId: '' })
+      setImageForm({ imageUrl: '', imageDesc: '', buildId: '', roomId: '', file: null })
       fetchData()
     } catch (err) {
+      setUploading(false)
       toast.error(err.response?.data?.detail || t('common.error'))
     }
   }
@@ -316,9 +330,18 @@ export default function AdminPage() {
               <h2 className="font-semibold text-gray-700 mb-4">➕ {t('admin.add')} {t('admin.images')}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="sm:col-span-2">
-                  <FormInput label={t('admin.imageUrl')} value={imageForm.imageUrl}
-                    onChange={e => setImageForm({ ...imageForm, imageUrl: e.target.value })}
-                    placeholder="https://..." />
+                  <label className="text-xs text-gray-500 block mb-1">{t('admin.imageUrl')}</label>
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif"
+                    onChange={e => {
+                      const file = e.target.files[0]
+                      if (file) {
+                        setImageForm({ ...imageForm, file, imageUrl: URL.createObjectURL(file) })
+                      }
+                    }}
+                    className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-kku-red"
+                  />
                 </div>
                 <FormInput label={t('admin.imageDesc')} value={imageForm.imageDesc}
                   onChange={e => setImageForm({ ...imageForm, imageDesc: e.target.value })} />
@@ -351,9 +374,9 @@ export default function AdminPage() {
                   <img src={imageForm.imageUrl} className="h-20 object-cover rounded-lg" onError={e => e.target.style.display = 'none'} />
                 </div>
               )}
-              <button onClick={handleSaveImage}
-                className="mt-4 px-6 py-2 bg-kku-red text-white rounded-lg text-sm font-medium hover:bg-kku-darkred">
-                {t('schedule.save')}
+              <button onClick={handleSaveImage} disabled={uploading}
+                className="mt-4 px-6 py-2 bg-kku-red text-white rounded-lg text-sm font-medium hover:bg-kku-darkred disabled:opacity-50">
+                {uploading ? 'กำลังอัปโหลด...' : t('schedule.save')}
               </button>
             </div>
 

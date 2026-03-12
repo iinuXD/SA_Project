@@ -18,6 +18,10 @@ class Settings(BaseSettings):
 
     FRONTEND_URL: str = "http://localhost:5173"
 
+    CLOUDINARY_CLOUD_NAME: str = "YOUR_CLOUD_NAME"
+    CLOUDINARY_API_KEY: str = "YOUR_CLOUDINARY_API_KEY"
+    CLOUDINARY_API_SECRET: str = "YOUR_CLOUDINARY_API_SECRET"
+
     class Config:
         env_file = ".env"
 
