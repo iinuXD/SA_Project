@@ -9,7 +9,7 @@ const BUILDING_EMOJIS = {
 
 export default function BuildingCard({ building }) {
   const emoji = BUILDING_EMOJIS[building.buildId] || '🏛️'
-  const images = building.images || []
+  const images = (building.images || []).filter((img) => !img.roomId)
   const [imgIndex, setImgIndex] = useState(0)
 
   useEffect(() => {
