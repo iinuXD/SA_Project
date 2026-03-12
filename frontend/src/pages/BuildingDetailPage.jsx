@@ -48,6 +48,8 @@ export default function BuildingDetailPage() {
     ? building.buildLocation
     : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(building.buildName + ' KKU Khon Kaen')}`
 
+  const buildingLevelImages = (building.images || []).filter((img) => !img.roomId)
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -61,9 +63,9 @@ export default function BuildingDetailPage() {
 
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
         {/* Images */}
-        {building.images?.length > 0 && (
+        {buildingLevelImages.length > 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {building.images.map((img) => (
+            {buildingLevelImages.map((img) => (
               <div key={img.imageId} className="rounded-xl overflow-hidden shadow">
                 <img
                   src={img.imageUrl}
