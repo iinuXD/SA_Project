@@ -130,12 +130,25 @@ def upload_image(
     allowed_types = {"image/jpeg", "image/png", "image/webp", "image/gif"}
     if file.content_type not in allowed_types:
         raise HTTPException(status_code=400, detail="Only JPEG, PNG, WebP, and GIF images are allowed")
-    result = cloudinary.uploader.upload(
-        file.file,
-        folder="wimc",
-        resource_type="image",
-    )
-    return {"url": result["secure_url"]}
+
+    try:
+        file_bytes = file.file.read()
+        if not file_bytes:
+            raise HTTPException(status_code=400, detail="Uploaded file is empty")
+
+        result = cloudinary.uploader.upload(
+            file_bytes,
+            folder="wimc",
+            resource_type="image",
+        )
+        secure_url = result.get("secure_url")
+        if not secure_url:
+            raise HTTPException(status_code=502, detail="Cloudinary did not return an image URL")
+        return {"url": secure_url}
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Image upload failed: {str(e)}")
 
 
 # ── Images ────────────────────────────────────────────────────────────────────
