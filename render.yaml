@@ -5,10 +5,8 @@ services:
   # ── Backend (FastAPI) ────────────────────────────────────────────────────────
   - type: web
     name: wimc-backend
-    runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    rootDir: backend
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -28,13 +26,11 @@ services:
         sync: false       # Set to your frontend Render URL
     healthCheckPath: /health
 
-  # ── Frontend (React/Vite static site) ────────────────────────────────────────
+  # ── Frontend (React/Vite + nginx) ────────────────────────────────────────────
   - type: web
     name: wimc-frontend
-    runtime: static
-    buildCommand: npm ci && npm run build
-    staticPublishPath: dist
-    rootDir: frontend
+    runtime: docker
+    dockerfilePath: frontend/Dockerfile
     envVars:
       - key: VITE_GOOGLE_CLIENT_ID
         sync: false
@@ -42,10 +38,6 @@ services:
         sync: false
       - key: VITE_API_URL
         sync: false       # Set to https://wimc-backend.onrender.com/api
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
 
 # ── PostgreSQL Database ───────────────────────────────────────────────────────
 databases:
